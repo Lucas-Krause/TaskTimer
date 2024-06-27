@@ -20,15 +20,16 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Windows Form Designer generated code ChatGPT
 
-        /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuForm));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             btnNewTaskTimer = new Button();
             dgvSavedTaskTimers = new DataGridView();
             clmIdGuid = new DataGridViewTextBoxColumn();
@@ -40,17 +41,23 @@
             btnEdit = new Button();
             btnDelete = new Button();
             tmrUpdateDgv = new System.Windows.Forms.Timer(components);
+            pnlTitleBar = new Panel();
+            lblTitle = new Label();
+            picAppIcon = new PictureBox();
+            btnMinimize = new Button();
+            btnClose = new Button();
+            ntiTimerIcon = new NotifyIcon(components);
             ((System.ComponentModel.ISupportInitialize)dgvSavedTaskTimers).BeginInit();
+            pnlTitleBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picAppIcon).BeginInit();
             SuspendLayout();
             // 
             // btnNewTaskTimer
             // 
-            btnNewTaskTimer.Location = new Point(12, 12);
+            btnNewTaskTimer.BackColor = Color.FromArgb(250, 221, 240);
+            resources.ApplyResources(btnNewTaskTimer, "btnNewTaskTimer");
             btnNewTaskTimer.Name = "btnNewTaskTimer";
-            btnNewTaskTimer.Size = new Size(120, 23);
-            btnNewTaskTimer.TabIndex = 0;
-            btnNewTaskTimer.Text = "Novo Timer";
-            btnNewTaskTimer.UseVisualStyleBackColor = true;
+            btnNewTaskTimer.UseVisualStyleBackColor = false;
             btnNewTaskTimer.Click += btnNewTaskTimer_Click;
             // 
             // dgvSavedTaskTimers
@@ -59,89 +66,177 @@
             dgvSavedTaskTimers.AllowUserToDeleteRows = false;
             dgvSavedTaskTimers.AllowUserToResizeColumns = false;
             dgvSavedTaskTimers.AllowUserToResizeRows = false;
-            dgvSavedTaskTimers.BackgroundColor = SystemColors.Control;
+            dgvSavedTaskTimers.BackgroundColor = Color.FromArgb(211, 175, 229);
+            dgvSavedTaskTimers.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(186, 164, 197);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(186, 164, 197);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvSavedTaskTimers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvSavedTaskTimers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSavedTaskTimers.Columns.AddRange(new DataGridViewColumn[] { clmIdGuid, clmName, clmStart, clmStop, clmNumberOfBreaks, clmTotal });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(255, 255, 192);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(255, 192, 255);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvSavedTaskTimers.DefaultCellStyle = dataGridViewCellStyle2;
             dgvSavedTaskTimers.EditMode = DataGridViewEditMode.EditProgrammatically;
-            dgvSavedTaskTimers.Location = new Point(143, 12);
+            dgvSavedTaskTimers.EnableHeadersVisualStyles = false;
+            dgvSavedTaskTimers.GridColor = Color.Black;
+            resources.ApplyResources(dgvSavedTaskTimers, "dgvSavedTaskTimers");
             dgvSavedTaskTimers.MultiSelect = false;
             dgvSavedTaskTimers.Name = "dgvSavedTaskTimers";
+            dgvSavedTaskTimers.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(186, 164, 197);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.LavenderBlush;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvSavedTaskTimers.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvSavedTaskTimers.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dgvSavedTaskTimers.ScrollBars = ScrollBars.Vertical;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(211, 175, 229);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(211, 175, 229);
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.WindowText;
+            dgvSavedTaskTimers.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dgvSavedTaskTimers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvSavedTaskTimers.Size = new Size(692, 211);
-            dgvSavedTaskTimers.TabIndex = 17;
+            dgvSavedTaskTimers.CellMouseDoubleClick += dgvSavedTaskTimers_CellMouseDoubleClick;
             // 
             // clmIdGuid
             // 
-            clmIdGuid.HeaderText = "idGuid";
+            resources.ApplyResources(clmIdGuid, "clmIdGuid");
             clmIdGuid.Name = "clmIdGuid";
-            clmIdGuid.Visible = false;
             // 
             // clmName
             // 
-            clmName.HeaderText = "Task";
+            resources.ApplyResources(clmName, "clmName");
             clmName.Name = "clmName";
-            clmName.Width = 250;
             // 
             // clmStart
             // 
-            clmStart.HeaderText = "Início";
+            resources.ApplyResources(clmStart, "clmStart");
             clmStart.Name = "clmStart";
             // 
             // clmStop
             // 
-            clmStop.HeaderText = "Parada";
+            resources.ApplyResources(clmStop, "clmStop");
             clmStop.Name = "clmStop";
             // 
             // clmNumberOfBreaks
             // 
-            clmNumberOfBreaks.HeaderText = "Pausas";
+            resources.ApplyResources(clmNumberOfBreaks, "clmNumberOfBreaks");
             clmNumberOfBreaks.Name = "clmNumberOfBreaks";
             // 
             // clmTotal
             // 
-            clmTotal.HeaderText = "Total";
+            resources.ApplyResources(clmTotal, "clmTotal");
             clmTotal.Name = "clmTotal";
             // 
             // btnEdit
             // 
-            btnEdit.Location = new Point(12, 41);
+            btnEdit.BackColor = Color.FromArgb(250, 221, 240);
+            resources.ApplyResources(btnEdit, "btnEdit");
             btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(120, 23);
-            btnEdit.TabIndex = 18;
-            btnEdit.Text = "Editar";
-            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.UseVisualStyleBackColor = false;
+            btnEdit.EnabledChanged += btnEdit_EnabledChanged;
             btnEdit.Click += btnEdit_Click;
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(12, 70);
+            btnDelete.BackColor = Color.FromArgb(253, 143, 182);
+            resources.ApplyResources(btnDelete, "btnDelete");
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(120, 23);
-            btnDelete.TabIndex = 19;
-            btnDelete.Text = "Deletar";
-            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.EnabledChanged += btnDelete_EnabledChanged;
             btnDelete.Click += btnDelete_Click;
             // 
             // tmrUpdateDgv
             // 
             tmrUpdateDgv.Tick += tmrUpdateDgv_Tick;
             // 
+            // pnlTitleBar
+            // 
+            pnlTitleBar.BackColor = Color.Pink;
+            pnlTitleBar.Controls.Add(lblTitle);
+            pnlTitleBar.Controls.Add(picAppIcon);
+            pnlTitleBar.Controls.Add(btnMinimize);
+            pnlTitleBar.Controls.Add(btnClose);
+            resources.ApplyResources(pnlTitleBar, "pnlTitleBar");
+            pnlTitleBar.ForeColor = Color.LawnGreen;
+            pnlTitleBar.Name = "pnlTitleBar";
+            pnlTitleBar.MouseDown += pnlTitleBar_MouseDown;
+            // 
+            // lblTitle
+            // 
+            resources.ApplyResources(lblTitle, "lblTitle");
+            lblTitle.ForeColor = SystemColors.WindowText;
+            lblTitle.Name = "lblTitle";
+            // 
+            // picAppIcon
+            // 
+            picAppIcon.BackgroundImage = Properties.Resources.icons8_timer_50;
+            resources.ApplyResources(picAppIcon, "picAppIcon");
+            picAppIcon.InitialImage = Properties.Resources.icons8_timer_50;
+            picAppIcon.Name = "picAppIcon";
+            picAppIcon.TabStop = false;
+            // 
+            // btnMinimize
+            // 
+            btnMinimize.BackColor = Color.Pink;
+            btnMinimize.BackgroundImage = Properties.Resources.icons8_minimize_48;
+            resources.ApplyResources(btnMinimize, "btnMinimize");
+            btnMinimize.FlatAppearance.MouseDownBackColor = Color.LightPink;
+            btnMinimize.FlatAppearance.MouseOverBackColor = Color.LightPink;
+            btnMinimize.ForeColor = Color.Pink;
+            btnMinimize.Name = "btnMinimize";
+            btnMinimize.TabStop = false;
+            btnMinimize.UseVisualStyleBackColor = false;
+            btnMinimize.Click += btnMinimize_Click;
+            // 
+            // btnClose
+            // 
+            btnClose.BackColor = Color.Pink;
+            btnClose.BackgroundImage = Properties.Resources.icons8_close_48;
+            resources.ApplyResources(btnClose, "btnClose");
+            btnClose.FlatAppearance.MouseDownBackColor = Color.LightPink;
+            btnClose.FlatAppearance.MouseOverBackColor = Color.LightPink;
+            btnClose.ForeColor = Color.Pink;
+            btnClose.Name = "btnClose";
+            btnClose.TabStop = false;
+            btnClose.UseVisualStyleBackColor = false;
+            btnClose.Click += btnClose_Click;
+            // 
+            // ntiTimerIcon
+            // 
+            resources.ApplyResources(ntiTimerIcon, "ntiTimerIcon");
+            // 
             // MenuForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(848, 234);
+            BackColor = Color.FromArgb(238, 203, 226);
+            Controls.Add(pnlTitleBar);
             Controls.Add(btnDelete);
             Controls.Add(btnEdit);
             Controls.Add(dgvSavedTaskTimers);
             Controls.Add(btnNewTaskTimer);
+            FormBorderStyle = FormBorderStyle.None;
+            MaximizeBox = false;
             Name = "MenuForm";
             ShowIcon = false;
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Task Timer Menu";
+            Paint += MenuForm_Paint;
             ((System.ComponentModel.ISupportInitialize)dgvSavedTaskTimers).EndInit();
+            pnlTitleBar.ResumeLayout(false);
+            pnlTitleBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picAppIcon).EndInit();
             ResumeLayout(false);
         }
 
@@ -158,5 +253,11 @@
         private DataGridViewTextBoxColumn clmStop;
         private DataGridViewTextBoxColumn clmNumberOfBreaks;
         private DataGridViewTextBoxColumn clmTotal;
+        private Panel pnlTitleBar;
+        private Button btnMinimize;
+        private Button btnClose;
+        private PictureBox picAppIcon;
+        private NotifyIcon ntiTimerIcon;
+        private Label lblTitle;
     }
 }

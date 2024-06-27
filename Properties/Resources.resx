@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
+  <!-- 
     Microsoft ResX Schema 
-
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -117,44 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="tmrCurrentTaskTime.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="clmTime.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="clmStart.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="clmStop.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="clmTotal.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABMLAAATCwAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAC2jf0AuIv+ArWO/Bu2j/xIto/9YLaP/WC2jv1Ito/9G7iP/gK3j/0AAAAAAAAA
-        AAAAAAAAAAAAALmO/wC0j/wAto79F7WP/GW1jvyItY78gLaP/Xm1jvx5to78gLWP/Ii1j/xkto/9F7aR
-        /AC2if8AAAAAALuM/wC2j/wAt478J7aP/Ia2j/x8to/9kbaP/cO2j/3fto/937aP/cO2j/2Rto/8fLaO
-        /Ie2jvwmto/8ALeI/wC1j/wAto79GLaO/Ie1j/14to/9xLaP/fy2j/3/to/9/7aP/f+2j/3/to/9/LaP
-        /cO1j/14tY/8hraP/Re2jvwArpL/AbaO/GW1j/x7to/9xLaP/f+2j/3/to/9/7aP/f+2j/3/to/9/raP
-        /f22j/3/to/9w7aP/Hu1j/xkvo//AbWO/By1j/yHto/9kbaP/fy2j/3/to/9/7aP/f+2j/3/to/9/7aP
-        /c62j/2xto/9/baP/f22j/2RtY78h7WO/By2jvxIto/8fraP/cW2j/3/to/9/7aP/f+2j/3/to/9/7aP
-        /c61j/12to/9zbaP/f+2j/3/to/9xLWO/H60j/1HtY79X7WO/Xi2j/3hto/9/7aP/f+2j/3/to/9/7aP
-        /a21jv1gto/9zbaP/f+2j/3/to/9/7aP/eG1j/14tY79X7WO/V+1jv14to/94baP/f+2j/3/to/9/7aP
-        /f+2j/2Lto/9ibaP/f+2j/3/to/9/7aP/f+2j/3ito/9d7aP/Vy2jvxIto78fbaP/ca2j/3/to/9/7aP
-        /f+2j/3/to/9q7aP/au2j/3/to/9/7aP/f+2j/3/to/9x7aO/Hu2jv1Gto/8HLaP/IW2j/2Tto/9/baP
-        /f+2j/3/to/9/7aP/aq2j/2qto/9/7aP/f+2j/3/to/9/7aP/a62jvyGto38HbaS/wG2jvxkto78eraP
-        /ci2j/3/to/9/7aP/f+2j/2qto/9qraP/fy2j/3Fto/9t7aP/bm2j/zWto/8bax6/wC2j/wAtZD9GLaO
-        /IS1j/14to/9ybaP/f22j/3/to/9sraP/bK2j/36to/9sLWO/Wq2jv0stY/8j7WP/CS1j/wAsJX/ALiN
-        /AC3jvwmto78g7aO/Hm2j/2Vto/9yraP/dG2j/3Rto/9yraP/Je1jvyCto/8erWP/IO1j/wYtY/8AAAA
-        AACylf8AuIz8ALWP/Ri2jv1jtY78g7WP/Hy1j/15to79ebaP/Hy1j/yCto/9f7aP/aC2j/yNto/8FraP
-        /AAAAAAAAAAAAAAAAAC2j/0AtpD+A7WO/By1jvxHtY79XrWO/V21jvxIto/8HbaO/Q21jv10to79Z7iP
-        /Aa3j/wA8A8AAOAHAADAAwAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAgAEAAMAB
-        AADgAQAA8AEAAA==
-</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="icons8-close-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-close-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8-minimize-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-minimize-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8-timer-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-timer-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

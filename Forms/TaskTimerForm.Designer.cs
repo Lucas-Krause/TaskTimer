@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TaskTimerForm));
             lblTaskName = new Label();
             txtTaskName = new TextBox();
             btnRegisterStart = new Button();
@@ -47,13 +52,20 @@
             lblBreaks = new Label();
             btnSaveTask = new Button();
             btnMenu = new Button();
+            pnlTitleBar = new Panel();
+            lblTitle = new Label();
+            picAppIcon = new PictureBox();
+            btnMinimize = new Button();
+            btnClose = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvBreaks).BeginInit();
+            pnlTitleBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picAppIcon).BeginInit();
             SuspendLayout();
             // 
             // lblTaskName
             // 
             lblTaskName.AutoSize = true;
-            lblTaskName.Location = new Point(12, 9);
+            lblTaskName.Location = new Point(11, 35);
             lblTaskName.Name = "lblTaskName";
             lblTaskName.Size = new Size(86, 15);
             lblTaskName.TabIndex = 3;
@@ -61,7 +73,9 @@
             // 
             // txtTaskName
             // 
-            txtTaskName.Location = new Point(12, 27);
+            txtTaskName.BackColor = Color.Pink;
+            txtTaskName.BorderStyle = BorderStyle.FixedSingle;
+            txtTaskName.Location = new Point(11, 53);
             txtTaskName.Name = "txtTaskName";
             txtTaskName.Size = new Size(343, 23);
             txtTaskName.TabIndex = 2;
@@ -69,22 +83,26 @@
             // 
             // btnRegisterStart
             // 
-            btnRegisterStart.Location = new Point(12, 65);
+            btnRegisterStart.BackColor = Color.FromArgb(250, 221, 240);
+            btnRegisterStart.FlatStyle = FlatStyle.Flat;
+            btnRegisterStart.Location = new Point(11, 82);
             btnRegisterStart.Name = "btnRegisterStart";
-            btnRegisterStart.Size = new Size(120, 23);
+            btnRegisterStart.Size = new Size(120, 25);
             btnRegisterStart.TabIndex = 4;
             btnRegisterStart.Text = "Registrar início";
-            btnRegisterStart.UseVisualStyleBackColor = true;
+            btnRegisterStart.UseVisualStyleBackColor = false;
             btnRegisterStart.Click += btnRegisterStart_Click;
             // 
             // btnRegisterStop
             // 
-            btnRegisterStop.Location = new Point(12, 94);
+            btnRegisterStop.BackColor = Color.FromArgb(250, 221, 240);
+            btnRegisterStop.FlatStyle = FlatStyle.Flat;
+            btnRegisterStop.Location = new Point(11, 113);
             btnRegisterStop.Name = "btnRegisterStop";
-            btnRegisterStop.Size = new Size(120, 23);
+            btnRegisterStop.Size = new Size(120, 25);
             btnRegisterStop.TabIndex = 6;
             btnRegisterStop.Text = "Registrar parada";
-            btnRegisterStop.UseVisualStyleBackColor = true;
+            btnRegisterStop.UseVisualStyleBackColor = false;
             btnRegisterStop.Click += btnRegisterStop_Click;
             // 
             // tmrCurrentTaskTime
@@ -93,7 +111,9 @@
             // 
             // mktxtStartTime
             // 
-            mktxtStartTime.Location = new Point(138, 65);
+            mktxtStartTime.BackColor = Color.Pink;
+            mktxtStartTime.BorderStyle = BorderStyle.FixedSingle;
+            mktxtStartTime.Location = new Point(137, 83);
             mktxtStartTime.Mask = "00:00";
             mktxtStartTime.Name = "mktxtStartTime";
             mktxtStartTime.Size = new Size(53, 23);
@@ -104,7 +124,9 @@
             // 
             // mktxtStopTime
             // 
-            mktxtStopTime.Location = new Point(138, 94);
+            mktxtStopTime.BackColor = Color.Pink;
+            mktxtStopTime.BorderStyle = BorderStyle.FixedSingle;
+            mktxtStopTime.Location = new Point(137, 115);
             mktxtStopTime.Mask = "00:00";
             mktxtStopTime.Name = "mktxtStopTime";
             mktxtStopTime.Size = new Size(53, 23);
@@ -115,7 +137,9 @@
             // 
             // mktxtTotalTaskTime
             // 
-            mktxtTotalTaskTime.Location = new Point(253, 95);
+            mktxtTotalTaskTime.BackColor = Color.Pink;
+            mktxtTotalTaskTime.BorderStyle = BorderStyle.FixedSingle;
+            mktxtTotalTaskTime.Location = new Point(252, 115);
             mktxtTotalTaskTime.Mask = "00:00";
             mktxtTotalTaskTime.Name = "mktxtTotalTaskTime";
             mktxtTotalTaskTime.ReadOnly = true;
@@ -127,7 +151,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(208, 65);
+            label2.Location = new Point(207, 91);
             label2.Name = "label2";
             label2.Size = new Size(142, 15);
             label2.TabIndex = 13;
@@ -135,12 +159,15 @@
             // 
             // btnAddBreak
             // 
-            btnAddBreak.Location = new Point(93, 215);
+            btnAddBreak.BackColor = Color.FromArgb(250, 221, 240);
+            btnAddBreak.FlatStyle = FlatStyle.Flat;
+            btnAddBreak.Location = new Point(92, 241);
             btnAddBreak.Name = "btnAddBreak";
-            btnAddBreak.Size = new Size(120, 23);
+            btnAddBreak.Size = new Size(120, 25);
             btnAddBreak.TabIndex = 14;
             btnAddBreak.Text = "Adicionar pausa";
-            btnAddBreak.UseVisualStyleBackColor = true;
+            btnAddBreak.UseVisualStyleBackColor = false;
+            btnAddBreak.EnabledChanged += btnAddBreak_EnabledChanged;
             btnAddBreak.Click += btnAddBreak_Click;
             // 
             // dgvBreaks
@@ -148,15 +175,48 @@
             dgvBreaks.AllowUserToAddRows = false;
             dgvBreaks.AllowUserToDeleteRows = false;
             dgvBreaks.AllowUserToResizeColumns = false;
-            dgvBreaks.BackgroundColor = SystemColors.Control;
+            dgvBreaks.BackgroundColor = Color.FromArgb(211, 175, 229);
+            dgvBreaks.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(186, 164, 197);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(186, 164, 197);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvBreaks.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvBreaks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvBreaks.Columns.AddRange(new DataGridViewColumn[] { clmTime, clmStart, clmStop, clmTotal });
-            dgvBreaks.Enabled = false;
-            dgvBreaks.Location = new Point(361, 27);
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(255, 255, 192);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(255, 192, 255);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvBreaks.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvBreaks.EnableHeadersVisualStyles = false;
+            dgvBreaks.GridColor = Color.Black;
+            dgvBreaks.Location = new Point(360, 53);
             dgvBreaks.MultiSelect = false;
             dgvBreaks.Name = "dgvBreaks";
             dgvBreaks.ReadOnly = true;
+            dgvBreaks.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(186, 164, 197);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.LavenderBlush;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvBreaks.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvBreaks.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(211, 175, 229);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(211, 175, 229);
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.WindowText;
+            dgvBreaks.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dgvBreaks.ScrollBars = ScrollBars.Vertical;
             dgvBreaks.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvBreaks.Size = new Size(443, 211);
             dgvBreaks.TabIndex = 16;
@@ -189,7 +249,7 @@
             // lblBreaks
             // 
             lblBreaks.AutoSize = true;
-            lblBreaks.Location = new Point(361, 9);
+            lblBreaks.Location = new Point(360, 35);
             lblBreaks.Name = "lblBreaks";
             lblBreaks.Size = new Size(43, 15);
             lblBreaks.TabIndex = 17;
@@ -197,29 +257,115 @@
             // 
             // btnSaveTask
             // 
-            btnSaveTask.Location = new Point(253, 215);
+            btnSaveTask.BackColor = Color.FromArgb(250, 221, 240);
+            btnSaveTask.FlatStyle = FlatStyle.Flat;
+            btnSaveTask.Location = new Point(243, 241);
             btnSaveTask.Name = "btnSaveTask";
-            btnSaveTask.Size = new Size(75, 23);
+            btnSaveTask.Size = new Size(75, 25);
             btnSaveTask.TabIndex = 19;
             btnSaveTask.Text = "Salvar task";
-            btnSaveTask.UseVisualStyleBackColor = true;
+            btnSaveTask.UseVisualStyleBackColor = false;
             btnSaveTask.Click += btnSaveTask_Click;
             // 
             // btnMenu
             // 
-            btnMenu.Location = new Point(12, 215);
+            btnMenu.BackColor = Color.FromArgb(250, 221, 240);
+            btnMenu.FlatStyle = FlatStyle.Flat;
+            btnMenu.Location = new Point(11, 241);
             btnMenu.Name = "btnMenu";
-            btnMenu.Size = new Size(75, 23);
+            btnMenu.Size = new Size(75, 25);
             btnMenu.TabIndex = 20;
             btnMenu.Text = "Menu";
-            btnMenu.UseVisualStyleBackColor = true;
+            btnMenu.UseVisualStyleBackColor = false;
             btnMenu.Click += btnMenu_Click;
+            // 
+            // pnlTitleBar
+            // 
+            pnlTitleBar.BackColor = Color.Pink;
+            pnlTitleBar.Controls.Add(lblTitle);
+            pnlTitleBar.Controls.Add(picAppIcon);
+            pnlTitleBar.Controls.Add(btnMinimize);
+            pnlTitleBar.Controls.Add(btnClose);
+            pnlTitleBar.Dock = DockStyle.Top;
+            pnlTitleBar.ForeColor = Color.LawnGreen;
+            pnlTitleBar.Location = new Point(0, 0);
+            pnlTitleBar.Margin = new Padding(10, 10, 100, 10);
+            pnlTitleBar.Name = "pnlTitleBar";
+            pnlTitleBar.Size = new Size(815, 26);
+            pnlTitleBar.TabIndex = 21;
+            pnlTitleBar.MouseDown += pnlTitleBar_MouseDown;
+            // 
+            // lblTitle
+            // 
+            lblTitle.AutoSize = true;
+            lblTitle.ForeColor = SystemColors.WindowText;
+            lblTitle.ImeMode = ImeMode.NoControl;
+            lblTitle.Location = new Point(52, 6);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(62, 15);
+            lblTitle.TabIndex = 22;
+            lblTitle.Text = "Task Timer";
+            // 
+            // picAppIcon
+            // 
+            picAppIcon.BackgroundImage = Properties.Resources.icons8_timer_50;
+            picAppIcon.BackgroundImageLayout = ImageLayout.Zoom;
+            picAppIcon.Dock = DockStyle.Left;
+            picAppIcon.ImeMode = ImeMode.NoControl;
+            picAppIcon.InitialImage = Properties.Resources.icons8_timer_50;
+            picAppIcon.Location = new Point(0, 0);
+            picAppIcon.Name = "picAppIcon";
+            picAppIcon.Size = new Size(46, 26);
+            picAppIcon.SizeMode = PictureBoxSizeMode.Zoom;
+            picAppIcon.TabIndex = 21;
+            picAppIcon.TabStop = false;
+            // 
+            // btnMinimize
+            // 
+            btnMinimize.BackColor = Color.Pink;
+            btnMinimize.BackgroundImage = Properties.Resources.icons8_minimize_48;
+            btnMinimize.BackgroundImageLayout = ImageLayout.Zoom;
+            btnMinimize.Dock = DockStyle.Right;
+            btnMinimize.FlatAppearance.MouseDownBackColor = Color.LightPink;
+            btnMinimize.FlatAppearance.MouseOverBackColor = Color.LightPink;
+            btnMinimize.FlatStyle = FlatStyle.Flat;
+            btnMinimize.ForeColor = Color.Pink;
+            btnMinimize.ImeMode = ImeMode.NoControl;
+            btnMinimize.Location = new Point(735, 0);
+            btnMinimize.Name = "btnMinimize";
+            btnMinimize.Size = new Size(40, 26);
+            btnMinimize.TabIndex = 21;
+            btnMinimize.TabStop = false;
+            btnMinimize.UseVisualStyleBackColor = false;
+            btnMinimize.Click += btnMinimize_Click;
+            // 
+            // btnClose
+            // 
+            btnClose.BackColor = Color.Pink;
+            btnClose.BackgroundImage = Properties.Resources.icons8_close_48;
+            btnClose.BackgroundImageLayout = ImageLayout.Zoom;
+            btnClose.Dock = DockStyle.Right;
+            btnClose.FlatAppearance.MouseDownBackColor = Color.LightPink;
+            btnClose.FlatAppearance.MouseOverBackColor = Color.LightPink;
+            btnClose.FlatStyle = FlatStyle.Flat;
+            btnClose.ForeColor = Color.Pink;
+            btnClose.ImeMode = ImeMode.NoControl;
+            btnClose.Location = new Point(775, 0);
+            btnClose.Name = "btnClose";
+            btnClose.Padding = new Padding(100);
+            btnClose.Size = new Size(40, 26);
+            btnClose.TabIndex = 21;
+            btnClose.TabStop = false;
+            btnClose.UseVisualStyleBackColor = false;
+            btnClose.Click += btnClose_Click;
             // 
             // TaskTimerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(815, 252);
+            BackColor = Color.FromArgb(238, 203, 226);
+            ClientSize = new Size(815, 278);
+            Controls.Add(pnlTitleBar);
             Controls.Add(btnMenu);
             Controls.Add(btnSaveTask);
             Controls.Add(lblBreaks);
@@ -233,13 +379,20 @@
             Controls.Add(btnRegisterStart);
             Controls.Add(lblTaskName);
             Controls.Add(txtTaskName);
+            FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "TaskTimerForm";
             RightToLeftLayout = true;
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Task Timer";
             FormClosing += TaskTimerForm_FormClosing;
+            Load += TaskTimerForm_Load;
+            Paint += TaskTimerForm_Paint;
             ((System.ComponentModel.ISupportInitialize)dgvBreaks).EndInit();
+            pnlTitleBar.ResumeLayout(false);
+            pnlTitleBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picAppIcon).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -264,5 +417,10 @@
         private Label lblBreaks;
         private Button btnSaveTask;
         private Button btnMenu;
+        private Panel pnlTitleBar;
+        private Label lblTitle;
+        private PictureBox picAppIcon;
+        private Button btnMinimize;
+        private Button btnClose;
     }
 }

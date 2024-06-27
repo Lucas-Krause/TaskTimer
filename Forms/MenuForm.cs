@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using System.Text.Json;
 using TaskTimer.Models;
 
@@ -5,7 +6,19 @@ namespace TaskTimer
 {
     public partial class MenuForm : Form
     {
-        #region Fields and Properties
+        #region [ Properties and Methods to move the window ] 
+
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        #endregion
+
+        #region [ Fields and Properties ]
 
         private string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SavedTaskTimers.json");
         private List<TaskTimerDto> savedTaskTimers;
@@ -13,11 +26,12 @@ namespace TaskTimer
 
         #endregion
 
-        #region Initialization
+        #region [ Initialization ]
 
         public MenuForm()
         {
             savedTaskTimers = new List<TaskTimerDto>();
+            Icon = new Icon(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources/TimerIcon.ico"));
             InitializeComponent();
             InitializeForm();
         }
@@ -26,11 +40,12 @@ namespace TaskTimer
         {
             tmrUpdateDgv.Start();
             LoadSavedTasks();
+            ActiveControl = null;
         }
 
         #endregion
 
-        #region Data Operations
+        #region [ Data Operations ] 
 
         public void LoadSavedTasks()
         {
@@ -54,7 +69,7 @@ namespace TaskTimer
 
         #endregion
 
-        #region UI Operations
+        #region [ UI Operations ] 
 
         public void PopulateDataGridView()
         {
@@ -95,9 +110,24 @@ namespace TaskTimer
             btnEdit.Enabled = dgvSavedTaskTimers != null && dgvSavedTaskTimers.SelectedRows.Count > 0;
         }
 
+        private void EditRow(DataGridViewRow row)
+        {
+            TaskTimerForm taskTimerForm = new(savedTaskTimers, row.Cells["clmIdGuid"].Value.ToString());
+            taskTimerForm.Owner = this;
+            taskTimerForm.Show();
+            Hide();
+        }
+
         #endregion
 
-        #region Event Handlers
+        #region [ Event Handlers ] 
+
+        private void tmrUpdateDgv_Tick(object sender, EventArgs e)
+        {
+            PopulateDataGridView();
+            EnableOrDisableDeleteButton();
+            EnableOrDisableEditButton();
+        }
 
         private void btnNewTaskTimer_Click(object sender, EventArgs e)
         {
@@ -105,13 +135,6 @@ namespace TaskTimer
             taskTimerForm.Owner = this;
             taskTimerForm.Show();
             Hide();
-        }
-
-        private void tmrUpdateDgv_Tick(object sender, EventArgs e)
-        {
-            PopulateDataGridView();
-            EnableOrDisableDeleteButton();
-            EnableOrDisableEditButton();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -126,10 +149,59 @@ namespace TaskTimer
         {
             foreach (DataGridViewRow row in dgvSavedTaskTimers.SelectedRows)
             {
-                TaskTimerForm taskTimerForm = new(savedTaskTimers, row.Cells["clmIdGuid"].Value.ToString());
-                taskTimerForm.Owner = this;
-                taskTimerForm.Show();
-                Hide();
+                EditRow(row);
+            }
+        }
+
+        private void dgvSavedTaskTimers_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            var row = dgvSavedTaskTimers.Rows[e.RowIndex];
+
+            EditRow(row);
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnEdit_EnabledChanged(object sender, EventArgs e)
+        {
+            btnEdit.BackColor = btnEdit.Enabled ? Color.FromArgb(250, 221, 240) : Color.Pink;
+        }
+
+        private void btnDelete_EnabledChanged(object sender, EventArgs e)
+        {
+            btnDelete.BackColor = btnDelete.Enabled ? Color.FromArgb(253, 143, 182) : Color.Pink;
+        }
+
+        private void MenuForm_Paint(object sender, PaintEventArgs e)
+        {
+            // Draw a custom border outside the Panel boundaries
+            int borderWidth = 3;  // Adjust the width of the border
+            using (Pen borderPen = new Pen(Color.Pink, borderWidth))
+            {
+                // Draw the rectangle just outside the Panel boundaries
+                e.Graphics.DrawRectangle(borderPen, new Rectangle(
+                    pnlTitleBar.Location.X - borderWidth,
+                    pnlTitleBar.Location.Y - borderWidth - 2,
+                    pnlTitleBar.Width + borderWidth * 2,
+                    pnlTitleBar.Height + borderWidth * 2));
+            }
+        }
+
+        //Event to make it able to move the window when clicking the title bar
+        private void pnlTitleBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                _ = SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
         }
 

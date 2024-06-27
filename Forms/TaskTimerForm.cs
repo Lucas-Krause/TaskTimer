@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Runtime.InteropServices;
 using System.Text.Json;
 using TaskTimer.Dtos;
 using TaskTimer.Models;
@@ -7,7 +8,19 @@ namespace TaskTimer
 {
     public partial class TaskTimerForm : Form
     {
-        #region Fields and Properties
+        #region [ Properties and Methods to move the window ]
+
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        #endregion
+
+        #region [ Fields and Properties ]
 
         private const string TimeFormat = "hh\\:mm";
         private bool isClosing = false;
@@ -18,7 +31,7 @@ namespace TaskTimer
 
         #endregion
 
-        #region Initialization
+        #region [ Initialization ]
 
         public TaskTimerForm(List<TaskTimerDto> _savedTaskTimers)
         {
@@ -44,13 +57,17 @@ namespace TaskTimer
                 mktxtTotalTaskTime.Text = currentTaskTimer.TotalTime;
                 PopulateTaskBreaks(currentTaskTimer.Breaks);
             }
-
-            ActiveControl = null;
         }
 
         #endregion
 
-        #region Event Handlers
+        #region [ Event Handlers ]
+
+        private void TaskTimerForm_Load(object sender, EventArgs e)
+        {
+            txtTaskName.SelectionStart = 0;
+            txtTaskName.SelectionLength = 0;
+        }
 
         private void tmrCurrentTaskTime_Tick(object sender, EventArgs e)
         {
@@ -99,6 +116,11 @@ namespace TaskTimer
             dgvBreaks.ClearSelection();
         }
 
+        private void btnAddBreak_EnabledChanged(object sender, EventArgs e)
+        {
+            btnAddBreak.BackColor = btnAddBreak.Enabled ? Color.FromArgb(253, 143, 182) : Color.Pink;
+        }
+
         private void btnSaveTask_Click(object sender, EventArgs e)
         {
             if (!SaveValidation()) return;
@@ -125,7 +147,7 @@ namespace TaskTimer
             {
                 savedTaskTimers.Add(taskTimerDto);
             }
-            else if(currentTaskTimer is not null)
+            else if (currentTaskTimer is not null)
             {
                 int indexToRemove = savedTaskTimers.FindIndex(timer => timer.idGuid == currentTaskTimer.idGuid);
                 savedTaskTimers.RemoveAt(indexToRemove);
@@ -150,6 +172,16 @@ namespace TaskTimer
                 menuForm.numberOfSavedTasks = 0;
                 menuForm.Show();
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
         }
 
         private void mktxtStartTime_TypeValidationCompleted(object sender, TypeValidationEventArgs e)
@@ -179,9 +211,34 @@ namespace TaskTimer
             }
         }
 
+        private void TaskTimerForm_Paint(object sender, PaintEventArgs e)
+        {
+            // Draw a custom border outside the Panel boundaries
+            int borderWidth = 3;  // Adjust the width of the border
+            using (Pen borderPen = new Pen(Color.Pink, borderWidth))
+            {
+                // Draw the rectangle just outside the Panel boundaries
+                e.Graphics.DrawRectangle(borderPen, new Rectangle(
+                    pnlTitleBar.Location.X - borderWidth,
+                    pnlTitleBar.Location.Y - borderWidth - 2,
+                    pnlTitleBar.Width + borderWidth * 2,
+                    pnlTitleBar.Height + borderWidth * 2));
+            }
+        }
+
+        //Event to make it able to move the window when clicking the title bar
+        private void pnlTitleBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                _ = SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
         #endregion
 
-        #region Validation and Utility Methods
+        #region [ Validation and Utility Methods ]
 
         private void PopulateTaskBreaks(List<TaskBreakDto> taskBreaks)
         {
@@ -295,7 +352,7 @@ namespace TaskTimer
 
         #endregion
 
-        #region Update and Calculation Methods
+        #region [ Update and Calculation Methods ]
 
         private void UpdateTotalTaskTime()
         {
@@ -309,7 +366,8 @@ namespace TaskTimer
         {
             if (TryParseTimeSpanFromMaskedInput(mktxtStartTime.Text, out var startTime) &&
                 (TryParseTimeSpanFromMaskedInput(mktxtStopTime.Text, out var stopTime) && stopTime > startTime ||
-                DateTime.Now.TimeOfDay > startTime))
+                DateTime.Now.TimeOfDay > startTime) &&
+                TimeSpan.Zero != startTime)
             {
                 return stopTime > startTime ? stopTime - startTime : DateTime.Now.TimeOfDay - startTime;
             }
